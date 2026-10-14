@@ -42,3 +42,55 @@ print(f"Kept {len(df)} counties (Iowa has 99).")
 if len(df) != 99:
     print("Warning: count isn't 99 — check for missing or suppressed counties.")
 print(df.head(10).to_string(index=False))
+
+"""
+Map Iowa's 2022 crude death rates by county.
+
+Output: iowa_mortality_map.html  
+"""
+
+import json
+from urllib.request import urlopen
+
+import pandas as pd
+import plotly.express as px
+
+IN_FILE = "iowa_mortality_clean.csv"
+OUT_FILE = "iowa_mortality_map.html"
+STATE_RATE = 1061.5   # Iowa's overall crude rate, from CDC's Total row
+
+# 1. Load the cleaned data (keep county rows only)
+df = pd.read_csv(IN_FILE, dtype=str, on_bad_lines="skip")
+df = df[df["County Code"].fillna("").str.match(r"^19\d{3}$")].copy()
+for col in ["Deaths", "Population", "Crude Rate"]:
+    df[col] = pd.to_numeric(df[col], errors="coerce")
+
+# 2. Download county boundary shapes, keyed by 5-digit FIPS code
+URL = "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
+with urlopen(URL) as resp:
+    counties = json.load(resp)
+# keep only Iowa's shapes 
+counties["features"] = [f for f in counties["features"] if f["id"].startswith("19")]
+
+# 3. Draw the map
+fig = px.choropleth(
+    df,
+    geojson=counties,
+    locations="County Code",          # matches each row to a county shape by FIPS
+    color="Crude Rate",
+    color_continuous_scale="Reds",
+    hover_name="County Name",
+    hover_data={"County Code": False, "Crude Rate": ":.1f",
+                "Deaths": ":,", "Population": ":,"},
+    labels={"Crude Rate": "Deaths per 100,000"},
+)
+fig.update_geos(fitbounds="locations", visible=False)   # zoom to Iowa, hide the rest
+fig.update_layout(
+    title=f"Crude death rate by county, Iowa 2022 (state rate: {STATE_RATE})",
+    margin=dict(l=0, r=0, t=50, b=0),
+)
+
+# 4. Save and open
+fig.write_html(OUT_FILE)
+print(f"Saved {OUT_FILE} ({len(df)} counties). Opening in your browser...")
+fig.show()
