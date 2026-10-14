@@ -2,6 +2,7 @@
 Clean the CDC county export for Iowa data
 - keep real Iowa county rows (FIPS)
 - sort alphabetically ordered counties and number them 1-99
+- shorten county names
 - drop Notes column, the "Total" row, and the footer/citation text
 
 Run once in the terminal first:  pip install pandas
