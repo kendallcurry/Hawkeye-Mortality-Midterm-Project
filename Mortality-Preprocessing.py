@@ -8,7 +8,11 @@ Clean the CDC county export for Iowa data
 Run once in the terminal first:  pip install pandas
 """
 
+import json #Javascript
+from urllib.request import urlopen
+
 import pandas as pd
+import plotly.express as px
 
 IN_FILE = "Underlying Cause of Death, 2018-2024, Single Race (1).csv"
 OUT_FILE = "iowa_mortality_clean.csv"
@@ -49,14 +53,8 @@ Map Iowa's 2022 crude death rates by county.
 Output: iowa_mortality_map.html  
 """
 
-import json
-from urllib.request import urlopen
-
-import pandas as pd
-import plotly.express as px
-
 IN_FILE = "iowa_mortality_clean.csv"
-OUT_FILE = "iowa_mortality_map.html"
+MAP_FILE = "iowa_mortality_map.html"
 STATE_RATE = 1061.5   # Iowa's overall crude rate, from CDC's Total row
 
 # 1. Load the cleaned data (keep county rows only)
@@ -69,7 +67,7 @@ for col in ["Deaths", "Population", "Crude Rate"]:
 URL = "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
 with urlopen(URL) as resp:
     counties = json.load(resp)
-# keep only Iowa's shapes 
+# keep only Iowa's counties
 counties["features"] = [f for f in counties["features"] if f["id"].startswith("19")]
 
 # 3. Draw the map
@@ -84,15 +82,14 @@ fig = px.choropleth(
     labels={"Crude Rate": "Deaths per 100,000"},   # nicer legend title
 )
 
-fig.update_geos(fitbounds="locations", visible=False)   # zoom to Iowa, hide the rest
+fig.update_geos(fitbounds="locations", visible=False)   # zoom to Iowa, hide the rest of the country
 fig.update_layout(
     title=f"Crude death rate by county, Iowa 2022 (state rate: {STATE_RATE})",
     margin=dict(l=0, r=0, t=50, b=0),
 )
 
-# 4. Save and open
-fig.write_html(OUT_FILE)
-print(f"Saved {OUT_FILE} ({len(df)} counties). Opening in your browser...")
-fig.show()
+# 4. Save and open map 
+fig.write_html(MAP_FILE) #saves the map as a webpage
 
+# 5. saves a png image of the map
 fig.write_image("iowa_mortality_map.png", scale=3) 
