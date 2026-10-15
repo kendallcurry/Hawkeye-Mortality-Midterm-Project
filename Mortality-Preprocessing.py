@@ -78,7 +78,8 @@ fig = px.choropleth(
     color="Crude Rate",               # which column decides the color
     color_continuous_scale="Reds",    # light red = low, dark red = high
     hover_name="County Name",         # bold title when you hover
-    hover_data={...},                 # extra details when you hover
+    hover_data={"County Code": False, "Crude Rate": ":.1f",
+                "Deaths": ":,", "Population": ":,"},
     labels={"Crude Rate": "Deaths per 100,000"},   # nicer legend title
 )
 
