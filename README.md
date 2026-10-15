@@ -37,6 +37,9 @@ After cleaning the three datasets individually, we combined them into one datase
 ## Methodology
 
 ## Results and Visualizations
+#### Iowa Mortality Map
+
+![Crude Death Rate by Iowa County, 2022](iowa_mortality_map.png)
 ### Economic Connectedness Visualization
 To further explore differences in economic connectedness across Iowa counties, we created a horizontal bar chart comparing the 10 counties with the lowest values. Using Python's pandas library, we identified these counties with the nlargest() and nsmallest() functions and combined them into a single dataset for visualization. We then used Matplotlib to construct the bar chart, displaying county names along the vertical axis and economic connectedness values along the horizontal axis. This visualization allows us to identify variation in economic connectedness across Iowa counties and provides an initial descriptive comparison before investing its relationship with mortality rates. 
 
