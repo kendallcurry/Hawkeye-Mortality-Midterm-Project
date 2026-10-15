@@ -30,11 +30,11 @@ We also examined the economic connectedness measure, which one of the indicators
 For the Underlying Cause of Death, 2018-2024, Single Race (1).csv , we made sure that the counties were alphabetically ordered and assigned a numerical index ranging from 1 (Adair County) to 99 (Wright County) to match seamlessly with the Social Capital county data. To make the data cleaner, we also got rid of the notes column included in the CDC data, shortened the name of the county without the state abbreviation, and got rid of the total row. 
 
 ### Age Data
+Age data comes from the National Institute on Minority Health and Health Disparities. The Social and Economic Environment Section of the Data Portal within HDPulse was filtered for Iowa counties and the data table for the "Age 65 and over" variable was downloaded to the iowa_65older_by_county.csv file. The clean_age_data.py file removes the header and footer rows from the dataset, excludes rows for the United States and Iowa statewide data. The dataset includes The county name, the county code (FIPS), the percent of population over age 65, the number of people over age 65, and the rank of the county against all US counties. These last two variables (number of people over age 65 and county rank) are removed by the clean_age_data.py script as they are not used in the later analysis. Finally, clean_age_data.py produces the age_data_clean.csv file which is then merged with other county-level data.
 
 ### Merging the Three Datasets
 After cleaning the three datasets individually, we combined them into one dataset containing information on economic connectedness, mortality rates, and the percentage of residents 65 and older across Iowa counties. We first made sure that the FIPS codes were consistent across all three datasets by renaming the relevant columns and converting the codes to integers. Using Python's panda library, we then merged based on their FIPS codes. We used inner joins to match the datasets based on county FIPS codes and checked that each county appeared only once in the dataset. After merging, we confirmed all 99 counties were still included in the final dataset. The final merged dataset contains 99 counties and 37 columns. We also checked for missing values in our three main variables (ec_county , Crude Rate, and Percent_65+) to make sure the data was ready for futher analysis. The final dataset was saved as iowa_merged_data.csv. 
 
-## Methodology
 
 ## Results and Visualizations
 ### Economic Connectedness Visualization
