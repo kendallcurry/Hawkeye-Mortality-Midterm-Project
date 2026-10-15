@@ -68,6 +68,10 @@ The mortality map shows variations in crude death rates across Iowa counties in 
 The age distribution map shows differences in the percentage of residents aged 65 and older across Iowa counties. Since age is an important factor associated with mortality, we included this variable to help account for differences in populations when investigating the relationship between economic connectedness and mortality. 
 #### Economic Connectedness
 Our economic connectedness visualizations compare the 10 counties with the highest and lowest economic connectedness values in Iowa. The chart shows varitaion across counties, with the highest values exceeding 1.0 and the lowest values closer to 0.6. This provides an initial indication that economic connectedness is not uniform across Iowa.
+#### Economic Connectedness vs Mortality
+The Economic Connectedness vs Mortality scatterplot shows a fairly spread out distribution with a slight downward trend in mortality as connectedness increases. This trend would be difficult to detect without a trendline, but it aligns with our hypothesis that higher economic connectedness is associated with lower mortality. This plot does not control for other variables that could be associated with mortality, so it would be interesting to run a more sophisticated regression in a future analysis.
+#### Age vs Mortality
+The Age vs Mortality scatterplot shows (as expected) a higher mortality rate associated with a larger percentage of the population aged 65 and over. This gives us confidence that the datasets we are using for these variables are appropriate.
 ### Overall Interpretation 
 Together, these visualizations establish a starting point for examining the relationship between economic connectedness and mortality. While the graphs illustrate differences across counties, they do not independently establish whether counties with higher economic connectedness experience lower mortality rates. Further analysis of our merged dataset is needed to evaluate this relationship while considering differences in the age composition of county populations.
 ## Limitations and Future Research
