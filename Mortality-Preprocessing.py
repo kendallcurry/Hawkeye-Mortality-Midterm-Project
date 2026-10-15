@@ -1,12 +1,8 @@
-"""
-Clean the CDC county export for Iowa data
+# Clean the CDC county export for Iowa data and create an interactive map showcasing death rates for each Iowa county
 - keep real Iowa county rows (FIPS)
 - sort alphabetically ordered counties and number them 1-99
 - shorten county names
 - drop Notes column, the "Total" row, and the footer/citation text
-
-Run once in the terminal first:  pip install pandas
-"""
 
 import json #Javascript
 from urllib.request import urlopen
@@ -21,7 +17,6 @@ OUT_FILE = "iowa_mortality_clean.csv"
 raw = pd.read_csv(IN_FILE, dtype=str, on_bad_lines="skip")
 
 # 2. Keep only rows with a valid 5-digit Iowa FIPS code
-#    (this removes the Total row and all the notes/caveats at the bottom)
 df = raw[raw["County Code"].fillna("").str.strip().str.match(r"^19\d{3}$")].copy()
 df = df.drop(columns=["Notes"])
 
@@ -42,42 +37,34 @@ df.insert(0, "No.", range(1, len(df) + 1))
 df = df[["No.", "County Name", "County", "County Code"] + num_cols]
 df.to_csv(OUT_FILE, index=False)
 
-print(f"Kept {len(df)} counties (Iowa has 99).")
-if len(df) != 99:
-    print("Warning: count isn't 99 — check for missing or suppressed counties.")
-print(df.head(10).to_string(index=False))
-
-"""
-Map Iowa's 2022 crude death rates by county.
-
+# Map Iowa's 2022 crude death rates by county.
 Output: iowa_mortality_map.html  
-"""
 
 IN_FILE = "iowa_mortality_clean.csv"
 MAP_FILE = "iowa_mortality_map.html"
 STATE_RATE = 1061.5   # Iowa's overall crude rate, from CDC's Total row
 
-# 1. Load the cleaned data (keep county rows only)
+# 6. Load the cleaned data (keep county rows only)
 df = pd.read_csv(IN_FILE, dtype=str, on_bad_lines="skip")
 df = df[df["County Code"].fillna("").str.match(r"^19\d{3}$")].copy()
 for col in ["Deaths", "Population", "Crude Rate"]:
     df[col] = pd.to_numeric(df[col], errors="coerce")
 
-# 2. Download county boundary shapes, keyed by 5-digit FIPS code
+# 7. Download county boundary shapes, keyed by 5-digit FIPS code
 URL = "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
 with urlopen(URL) as resp:
     counties = json.load(resp)
 # keep only Iowa's counties
 counties["features"] = [f for f in counties["features"] if f["id"].startswith("19")]
 
-# 3. Draw the map
+# 8. Draw the map
 fig = px.choropleth(
-    df,                               # the data
-    geojson=counties,                 # the county shapes
-    locations="County Code",          # which column links a row to a shape
-    color="Crude Rate",               # which column decides the color
-    color_continuous_scale="Reds",    # light red = low, dark red = high
-    hover_name="County Name",         # bold title when you hover
+    df,                               
+    geojson=counties,                 
+    locations="County Code",          
+    color="Crude Rate",               
+    color_continuous_scale="Reds",    
+    hover_name="County Name",         
     hover_data={"County Code": False, "Crude Rate": ":.1f",
                 "Deaths": ":,", "Population": ":,"},
     labels={"Crude Rate": "Deaths per 100,000"},   # nicer legend title
@@ -89,8 +76,8 @@ fig.update_layout(
     margin=dict(l=0, r=0, t=50, b=0),
 )
 
-# 4. Save and open map 
+# 9. Save and open map 
 fig.write_html(MAP_FILE) #saves the map as a webpage
 
-# 5. saves a png image of the map
+# 10. saves a png image of the map
 fig.write_image("iowa_mortality_map.png", scale=3) 
