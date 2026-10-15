@@ -7,7 +7,7 @@ iowa_df = iowa_df.sort_values("county_name").reset_index(drop=True)
 iowa_df.insert(0, "county_index", range(1, len(iowa_df) + 1))
 print("Number of Iowa Counties:", iowa_df["county"].nunique())
 iowa_df.to_csv("iowa_social_capital.csv", index=False)
-print("Iowa dateset shape:", iowa_df.shape)
+print("Iowa dataset shape:", iowa_df.shape)
 print(iowa_df[["county_name", "county"]].head((15)))
 
 import matplotlib.pyplot as plt
