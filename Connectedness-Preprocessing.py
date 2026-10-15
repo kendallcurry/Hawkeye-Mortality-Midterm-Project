@@ -9,3 +9,20 @@ print("Number of Iowa Counties:", iowa_df["county"].nunique())
 iowa_df.to_csv("iowa_social_capital.csv", index=False)
 print("Iowa dateset shape:", iowa_df.shape)
 print(iowa_df[["county_name", "county"]].head((15)))
+
+import matplotlib.pyplot as plt
+lowest = iowa_df.nsmallest(10, "ec_county")
+highest = iowa_df.nlargest(10, "ec_county")
+graph_df = pd.concat([lowest,highest])
+graph_df["county_name"] = graph_df["county_name"].str.replace(", Iowa", "", regex=False)
+graph_df.plot.barh(
+    x="county_name",
+    y="ec_county",
+    figsize=(10, 8),
+    legend=False
+)
+plt.title("Most and Least Economically Connected Iowa Counties")
+plt.xlabel("Economic Connectedness")
+plt.ylabel("County")
+plt.tight_layout()
+plt.show()
