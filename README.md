@@ -1,5 +1,6 @@
 # Hawkeye Mortality Midterm
-#### Hawkeye Mortality 
+####  Group: Hawkeye Mortality 
+Julia Kapusta, Kendall Curry, and Kevin Szybist
 ## Project Overview
 The goal of our project is to investigate the relationship between social connectedness and mortality rates. We chose to focus our initial analysis on counties in Iowa because they have relatively little variation in population size, land area, and population density. This allows for more consistent comparisons across counties. Additionally, we chose to incorporate county-level age data into our exploration because age is one the primary factors associated with mortality. By accounting for differences in age across counties, we hope to better understand whether a statistically significant relationship exists between social connectedness and mortality rates. 
 
