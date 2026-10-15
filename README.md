@@ -37,6 +37,9 @@ After cleaning the three datasets individually, we combined them into one datase
 ## Methodology
 
 ## Results and Visualizations
+### Economic Connectedness Visualization
+
+![Most and Least Economically Connected Iowa Counties](iowa_connectedness_chart.png)
 ### Population Aged 65 and Older Across Iowa Counties
 
 ![Percentage of Population Aged 65 and Older](percent-of-population-age-65-and-older-i.png)
