@@ -76,7 +76,6 @@ Our data investigation includes several limitations. Though we reduce the proble
 
 Future work could address these limitations by using age-adjusted death rates, which CDC WONDER provides, and by combining several years of mortality data to stabilize rates in small counties. Adding controls such as median household income, educational attainment and rurality would help separate the effect of economic connectedness from other county characteristics. Examining specific causes of death, such as heart disease, overdoses or suicide, could show whether connectedness matters more for some causes than others. Expanding the analysis to neighboring Midwestern states or the entire country would provide a larger sample and show whether the patterns found in Iowa hold elsewhere.
 ## Reproducibility
-## Reproducibility
 
 Our project uses Python to clean, merge, and visualize county-level data from Iowa. The datasets and Python scripts used throughout our analysis are included in this GitHub repository.
 
