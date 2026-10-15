@@ -1,22 +1,31 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+## Load Data
 df = pd.read_csv("social_capital_county.csv")
 print(df.head())
+
+## Filter for Iowa counties
 df["county"] = pd.to_numeric(df["county"])
 iowa_df = df[(df["county"] // 1000) == 19].copy()
+
+## Sort counties and add index
 iowa_df = iowa_df.sort_values("county_name").reset_index(drop=True)
 iowa_df.insert(0, "county_index", range(1, len(iowa_df) + 1))
+
+## Save cleaned data
 print("Number of Iowa Counties:", iowa_df["county"].nunique())
 iowa_df.to_csv("iowa_social_capital.csv", index=False)
 print("Iowa dataset shape:", iowa_df.shape)
 print(iowa_df[["county_name", "county"]].head((15)))
 
-
+## Find highest and lowest connectedness counties
 lowest = iowa_df.nsmallest(10, "ec_county")
 highest = iowa_df.nlargest(10, "ec_county")
 graph_df = pd.concat([lowest,highest])
 graph_df["county_name"] = graph_df["county_name"].str.replace(", Iowa", "", regex=False)
+
+## Create graph
 graph_df.plot.barh(
     x="county_name",
     y="ec_county",
