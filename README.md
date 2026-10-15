@@ -3,7 +3,14 @@
 ## Project Overview
 The goal of our project is to investigate the relationship between social connectedness and mortality rates. We chose to focus our initial analysis on counties in Iowa because they have relatively little variation in population size, land area, and population density. This allows for more consistent comparisons across counties. Additionally, we chose to incorporate county-level age data into our exploration because age is one the primary factors associated with mortality. By accounting for differences in age across counties, we hope to better understand whether a statistically significant relationship exists between social connectedness and mortality rates. 
 
-### Data sets
+### Data
+Our project uses three county level datasets to investigate the relationship between social connectedness and mortality rates across Iowa's 99 counties. These datasets provide information on economic connectedness, mortality, and the proportion of residents aged 65 and older. 
+
+### Data Sources 
+The datasets used in this project were obtained from publicly available sources:
+- Social Capital: Opportunity Insights, Social Capital Atlas. This dataset provides county level economic connectedness measures.
+- Mortality: Centers for Disease Control and Prevention (CDC), Underlying Cause of Death, 2018-2024, Single Race. This dataset provides county level mortality information.
+- Population Aged 65 and Older: County level age data used to examine differences in the elderly population across Iowa counties. The original source and reference year will be added once confirmed.
 
 ### Economic Connectedness
 Economic connectedness measures the extent to which individuals from lower socioeconomic backgrounds form friendships with individuals from higher socioeconomic backgrounds. According to Opportunity Insights, economic connectedness is calculated as twice the average share of higher socioeconomic status friends among lower socioeconomic status individuals. 
@@ -18,3 +25,6 @@ Starting with the Social_Capital_County.csv , we filtered the data to include on
 We also examined the economic connectedness measure, which one of the indicators of social capital included in the dataset. This measure will be used to investigate potential relationships between social connectedness and mortality rates across Iowa counties.
 
 For the Underlying Cause of Death, 2018-2024, Single Race (1).csv , we made sure that the counties were alphabetically ordered and assigned a numerical index ranging from 1 (Adair County) to 99 (Wright County) to match seamlessly with the Social Capital county data. To make the data cleaner, we also got rid of the notes column included in the CDC data, shortened the name of the county without the state abbreviation, and got rid of the total row. 
+
+## Economic Connectedness Visualization
+To further explore differences in economic connectedness across Iowa counties, we created a horizontal bar chart comparing the 10 counties with the lowest values. Using Python's pandas library, we identified these counties with the nlargest() and nsmallest() functions and combined them into a single dataset for visualization. We then used Matplotlib to construct the bar chart, displaying county names along the vertical axis and economic connectedness values along the horizontal axis. This visualization allows us to identify variation in economic connectedness across Iowa counties and provides an initial descriptive comparison before investing its relationship with mortality rates. 
