@@ -69,12 +69,7 @@ The Economic Connectedness vs Mortality scatterplot shows a fairly spread out di
 The Age vs Mortality scatterplot shows (as expected) a higher mortality rate associated with a larger percentage of the population aged 65 and over. This gives us confidence that the datasets we are using for these variables are appropriate.
 ### Overall Interpretation 
 Together, these visualizations establish a starting point for examining the relationship between economic connectedness and mortality. While the graphs illustrate differences across counties, they do not independently establish whether counties with higher economic connectedness experience lower mortality rates. Further analysis of our merged dataset is needed to evaluate this relationship while considering differences in the age composition of county populations.
-## Limitations and Future Research
-Our data investigation includes several limitations. Though we reduce the problem of age by including the percentage of residents aged 65 and older as a control, that does not fully adjust the crude mortality rate to something that captures the full age distribution of a county. There could certainly be other confounding variables that are not adjusted for. Furthermore, because we only use 2022 data, and several counties have small populations of only a few thousand people, a few deaths can noticeably change the rate, making the data less reliable than if we were to compare with more years. Lastly, it is important to note that economic connectedness is primarily calculated using Facebook friendship data for adults aged 25 to 44, there may be differences in who the dataset measures, as different subsets of the population may be more or less likely to use Facebook. 
 
-### Future Research
-
-Future work could address these limitations by using age-adjusted death rates, which CDC WONDER provides, and by combining several years of mortality data to stabilize rates in small counties. Adding controls such as median household income, educational attainment and rurality would help separate the effect of economic connectedness from other county characteristics. Examining specific causes of death, such as heart disease, overdoses or suicide, could show whether connectedness matters more for some causes than others. Expanding the analysis to neighboring Midwestern states or the entire country would provide a larger sample and show whether the patterns found in Iowa hold elsewhere.
 ## Reproducibility
 
 Our project uses Python to clean, merge, and visualize county-level data from Iowa. The datasets and Python scripts used throughout our analysis are included in this GitHub repository.
@@ -97,3 +92,10 @@ The preprocessing scripts generate three cleaned datasets:
 These datasets are merged into `iowa_merged_data.csv`, which contains economic connectedness, crude mortality rates, and the percentage of residents aged 65 and older for all 99 Iowa counties.
 
 The visualization scripts generate the maps and graphs displayed in the Results and Visualizations section.
+
+## Limitations and Future Research
+Our data investigation includes several limitations. Though we reduce the problem of age by including the percentage of residents aged 65 and older as a control, that does not fully adjust the crude mortality rate to something that captures the full age distribution of a county. There could certainly be other confounding variables that are not adjusted for. Furthermore, because we only use 2022 data, and several counties have small populations of only a few thousand people, a few deaths can noticeably change the rate, making the data less reliable than if we were to compare with more years. Lastly, it is important to note that economic connectedness is primarily calculated using Facebook friendship data for adults aged 25 to 44, there may be differences in who the dataset measures, as different subsets of the population may be more or less likely to use Facebook. 
+
+### Future Research
+
+Future work could address these limitations by using age-adjusted death rates, which CDC WONDER provides, and by combining several years of mortality data to stabilize rates in small counties. Adding controls such as median household income, educational attainment and rurality would help separate the effect of economic connectedness from other county characteristics. Examining specific causes of death, such as heart disease, overdoses or suicide, could show whether connectedness matters more for some causes than others. Expanding the analysis to neighboring Midwestern states or the entire country would provide a larger sample and show whether the patterns found in Iowa hold elsewhere.
