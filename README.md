@@ -38,10 +38,28 @@ After cleaning the three datasets individually, we combined them into one datase
 
 ## Results and Visualizations
 ### Economic Connectedness Visualization
+
+![Most and Least Economically Connected Iowa Counties](iowa_connectedness_chart.png)
+### Population Aged 65 and Older Across Iowa Counties
+
+![Percentage of Population Aged 65 and Older](percent-of-population-age-65-and-older-i.png)
+#### Iowa Mortality Map
+
+![Crude Death Rate by Iowa County, 2022](iowa_mortality_map.png)
+### Economic Connectedness Visualization
 To further explore differences in economic connectedness across Iowa counties, we created a horizontal bar chart comparing the 10 counties with the lowest values. Using Python's pandas library, we identified these counties with the nlargest() and nsmallest() functions and combined them into a single dataset for visualization. We then used Matplotlib to construct the bar chart, displaying county names along the vertical axis and economic connectedness values along the horizontal axis. This visualization allows us to identify variation in economic connectedness across Iowa counties and provides an initial descriptive comparison before investing its relationship with mortality rates. 
 
-
+To visualize mortality rates across Iowa counties, we decided to produce an interactive map and a png image of the map using Json (a built in formatting package in Python) and Plotly (an installable python package) and Plotly's choropleth map function. In the 'Mortality-Preprocessing.py' after cleaning the raw CDC data, it then joins each county to its boundary shape by the FIPS code and draws the map with Plotly, shading the counties darker red with higher death rates. The lighter shaded counties indicate lower death rates. However, because this map showcases crude rates and are not age-adjusted, when interpreting this map we should keep in mind that counties with older populations are more likely to show higher death rates. To see the interactive map version, with crude rates, county names, etc, download 'iowa_mortality_map.html' to open it into a web browser or to see the png image click on the png in our github repository. 
 
 ## Findings and Interpretations
+Our initials visualizations provide an overview of how mortality rates, economic connectedness, and the percentage of residents aged 65 and older vary across Iowa's 99 Counties. 
+#### Mortality Rates
+The mortality map shows variations in crude death rates across Iowa counties in 2022. Some counties have noticeably higher mortality rates than others, suggesting that geographic differences may be important when examining mortality across the state.
+#### Population Aged 65 and Older
+The age distribution map shows differences in the percentage of residents aged 65 and older across Iowa counties. Since age is an important factor associated with mortality, we included this variable to help account for differences in populations when investigating the relationship between economic connectedness and mortality. 
+#### Economic Connectedness
+Our economic connectedness visualizations compare the 10 counties with the highest and lowest economic connectedness values in Iowa. The chart shows varitaion across counties, with the highest values exceeding 1.0 and the lowest values closer to 0.6. This provides an initial indication that economic connectedness is not uniform across Iowa.
+### Overall Interpretation 
+Together, these visualizations establish a starting point for examining the relationship between economic connectedness and mortality. While the graphs illustrate differences across counties, they do not independently establish whether counties with higher economic connectedness experience lower mortality rates. Further analysis of our merged dataset is needed to evaluate this relationship while considering differences in the age composition of county populations.
 ## Limitations and Future Research
 ## Reproducibility
