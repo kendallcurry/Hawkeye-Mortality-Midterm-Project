@@ -74,16 +74,16 @@ counties["features"] = [f for f in counties["features"] if f["id"].startswith("1
 
 # 3. Draw the map
 fig = px.choropleth(
-    df,
-    geojson=counties,
-    locations="County Code",          # matches each row to a county shape by FIPS
-    color="Crude Rate",
-    color_continuous_scale="Reds",
-    hover_name="County Name",
-    hover_data={"County Code": False, "Crude Rate": ":.1f",
-                "Deaths": ":,", "Population": ":,"},
-    labels={"Crude Rate": "Deaths per 100,000"},
+    df,                               # the data
+    geojson=counties,                 # the county shapes
+    locations="County Code",          # which column links a row to a shape
+    color="Crude Rate",               # which column decides the color
+    color_continuous_scale="Reds",    # light red = low, dark red = high
+    hover_name="County Name",         # bold title when you hover
+    hover_data={...},                 # extra details when you hover
+    labels={"Crude Rate": "Deaths per 100,000"},   # nicer legend title
 )
+
 fig.update_geos(fitbounds="locations", visible=False)   # zoom to Iowa, hide the rest
 fig.update_layout(
     title=f"Crude death rate by county, Iowa 2022 (state rate: {STATE_RATE})",
