@@ -37,6 +37,9 @@ After cleaning the three datasets individually, we combined them into one datase
 ## Methodology
 
 ## Results and Visualizations
+### Population Aged 65 and Older Across Iowa Counties
+
+![Percentage of Population Aged 65 and Older](percent-of-population-age-65-and-older-i.png)
 #### Iowa Mortality Map
 
 ![Crude Death Rate by Iowa County, 2022](iowa_mortality_map.png)
