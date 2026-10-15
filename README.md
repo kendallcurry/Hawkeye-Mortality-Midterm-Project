@@ -4,6 +4,7 @@
 The goal of our project is to investigate the relationship between social connectedness and mortality rates. We chose to focus our initial analysis on counties in Iowa because they have relatively little variation in population size, land area, and population density. This allows for more consistent comparisons across counties. Additionally, we chose to incorporate county-level age data into our exploration because age is one the primary factors associated with mortality. By accounting for differences in age across counties, we hope to better understand whether a statistically significant relationship exists between social connectedness and mortality rates. 
 
 ### Data sets
+Our project uses three county level datasets to investigate the relationship between social connectedness and mortality rates across Iowa's 99 counties. These datasets provide information on economic connectedness, mortality, and the proportion of residents aged 65 and old. 
 
 ### Economic Connectedness
 Economic connectedness measures the extent to which individuals from lower socioeconomic backgrounds form friendships with individuals from higher socioeconomic backgrounds. According to Opportunity Insights, economic connectedness is calculated as twice the average share of higher socioeconomic status friends among lower socioeconomic status individuals. 
