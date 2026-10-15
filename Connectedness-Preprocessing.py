@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+
 df = pd.read_csv("social_capital_county.csv")
 print(df.head())
 df["county"] = pd.to_numeric(df["county"])
@@ -10,7 +12,7 @@ iowa_df.to_csv("iowa_social_capital.csv", index=False)
 print("Iowa dataset shape:", iowa_df.shape)
 print(iowa_df[["county_name", "county"]].head((15)))
 
-import matplotlib.pyplot as plt
+
 lowest = iowa_df.nsmallest(10, "ec_county")
 highest = iowa_df.nlargest(10, "ec_county")
 graph_df = pd.concat([lowest,highest])
