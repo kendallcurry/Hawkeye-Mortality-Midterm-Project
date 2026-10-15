@@ -94,3 +94,5 @@ fig.update_layout(
 fig.write_html(OUT_FILE)
 print(f"Saved {OUT_FILE} ({len(df)} counties). Opening in your browser...")
 fig.show()
+
+fig.write_image("iowa_mortality_map.png", scale=3) 
